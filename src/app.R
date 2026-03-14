@@ -116,16 +116,16 @@ ui <- fluidPage(
           ))
         ),
 
-        # Map
+                # Map
         div(class = "card-panel",
-          div(class = "card-title", "🗺️ Crime Map — Bubble size reflects crime density"),
+          div(class = "card-title", "Crime Map"),
           leafletOutput("map", height = "420px")
         ),
-
+ 
         # Bar chart
         div(class = "card-panel",
-          div(class = "card-title", "📊 Top 5 Crime Types"),
-          plotOutput("bar_chart", height = "320px")
+          div(class = "card-title", "Top 5 Crime Types"),
+          plotlyOutput("bar_chart", height = "320px")
         )
       )
     )
@@ -168,10 +168,10 @@ server <- function(input, output, session) {
     counts$TYPE[1]
   })
 
-  
+  #Map
   output$map <- renderLeaflet({
     d <- filtered_data() |> filter(!is.na(LAT), !is.na(LON))
-
+ 
     neighbourhood_counts <- d |>
       group_by(NEIGHBOURHOOD, LAT, LON) |>
       summarise(COUNT = n(), .groups = "drop") |>
@@ -182,51 +182,57 @@ server <- function(input, output, session) {
         COUNT = sum(COUNT),
         .groups = "drop"
       )
-
+ 
     max_count <- max(neighbourhood_counts$COUNT, 1)
     neighbourhood_counts <- neighbourhood_counts |>
       mutate(radius = 5 + sqrt(COUNT / max_count) * 40)
-
+ 
     leaflet(neighbourhood_counts) |>
       addProviderTiles(providers$CartoDB.Positron) |>
       setView(lng = -123.10, lat = 49.25, zoom = 12) |>
       addCircleMarkers(
-        lng    = ~LON,
-        lat    = ~LAT,
-        radius = ~radius,
-        color  = "#1565c0",
-        weight = 1,
-        fillColor  = "#1565c0",
+        lng         = ~LON,
+        lat         = ~LAT,
+        radius      = ~radius,
+        color       = "#1565c0",
+        weight      = 1,
+        fillColor   = "#1565c0",
         fillOpacity = 0.5,
-        popup  = ~paste0("<b>", NEIGHBOURHOOD, "</b><br>Total Crimes: ", format(COUNT, big.mark = ","))
+        label       = ~paste0(NEIGHBOURHOOD, ": ", format(COUNT, big.mark = ","), " crimes"),
+        popup       = ~paste0("<b>", NEIGHBOURHOOD, "</b><br>Total Crimes: ", format(COUNT, big.mark = ",")),
+        labelOptions = labelOptions(
+          style     = list("font-weight" = "normal", padding = "4px 8px"),
+          textsize  = "13px",
+          direction = "auto"
+        )
       )
   })
-
-  
-  output$bar_chart <- renderPlot({
+ 
+  #Bar Chart
+  output$bar_chart <- renderPlotly({
     d <- filtered_data()
     if (nrow(d) == 0) {
-      ggplot() +
-        annotate("text", x = 0.5, y = 0.5, label = "No data for selected filters",
-                 size = 6, colour = "grey50") +
-        theme_void()
+      plotly_empty() |> layout(title = "No data for selected filters")
     } else {
       top5 <- d |>
         count(TYPE, sort = TRUE) |>
         slice_head(n = 5) |>
         mutate(TYPE = reorder(TYPE, n))
-
-      ggplot(top5, aes(x = TYPE, y = n, fill = TYPE)) +
-        geom_col(show.legend = FALSE, width = 0.65) +
-        coord_flip() +
-        scale_fill_manual(values = rep("#1565c0", 5)) +
-        scale_y_continuous(labels = scales::comma) +
-        labs(x = NULL, y = "Number of Incidents") +
-        theme_minimal(base_size = 13) +
-        theme(
-          panel.grid.major.y = element_blank(),
-          axis.text          = element_text(colour = "#333"),
-          plot.background    = element_rect(fill = "white", colour = NA)
+ 
+      plot_ly(
+        top5,
+        x           = ~n,
+        y           = ~TYPE,
+        type        = "bar",
+        orientation = "h",
+        marker      = list(color = "#1565c0"),
+        hovertemplate = ~paste0("<b>", TYPE, "</b><br>Incidents: %{x:,}<extra></extra>")
+      ) |>
+        layout(
+          xaxis  = list(title = "Number of Incidents", tickformat = ","),
+          yaxis  = list(title = ""),
+          plot_bgcolor  = "white",
+          paper_bgcolor = "white"
         )
     }
   })
