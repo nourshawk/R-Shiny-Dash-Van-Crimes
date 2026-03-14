@@ -2007,6 +2007,35 @@
         "RemoteSha": "4.12.0"
       }
     },
+    "png": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "description": {
+        "Package": "png",
+        "Version": "0.1-8",
+        "Title": "Read and write PNG images",
+        "Author": "Simon Urbanek <Simon.Urbanek@r-project.org>",
+        "Maintainer": "Simon Urbanek <Simon.Urbanek@r-project.org>",
+        "Depends": "R (>= 2.9.0)",
+        "Description": "This package provides an easy and simple way to read, write and display bitmap images stored in the PNG format. It can read and write both files and in-memory raw vectors.",
+        "License": "GPL-2 | GPL-3",
+        "SystemRequirements": "libpng",
+        "URL": "http://www.rforge.net/png/",
+        "NeedsCompilation": "yes",
+        "Packaged": "2022-11-29 09:42:31 UTC; rforge",
+        "Repository": "CRAN",
+        "Date/Publication": "2022-11-29 11:12:53 UTC",
+        "Built": "R 4.5.0; aarch64-apple-darwin20; 2025-03-31 21:51:18 UTC; unix",
+        "Archs": "png.so.dSYM",
+        "RemoteType": "standard",
+        "RemoteRef": "png",
+        "RemotePkgRef": "png",
+        "RemoteRepos": "https://cloud.r-project.org",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "aarch64-apple-darwin20",
+        "RemoteSha": "0.1-8"
+      }
+    },
     "prettyunits": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -3359,7 +3388,7 @@
   },
   "files": {
     ".Rprofile": {
-      "checksum": "e52d091018dfe90509ce134ab0e2b902"
+      "checksum": "5177deb9a02c530943adf96ec2b42ebd"
     },
     "app.R": {
       "checksum": "d3255658d7bb28a44b1a9eb5baca0909"
@@ -3374,7 +3403,7 @@
       "checksum": "2fc2587ca4dbf285a3accc1871522b68"
     },
     "renv.lock": {
-      "checksum": "cf602a26677ddc6b6c941db3e60f670f"
+      "checksum": "c5a4547533672502f45819f8855133f7"
     }
   },
   "users": null
