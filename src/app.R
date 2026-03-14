@@ -239,6 +239,7 @@ server <- function(input, output, session) {
           plot_bgcolor  = "white",
           paper_bgcolor = "white"
         )
+        config(displayModeBar = FALSE)
     }
   })
 }
