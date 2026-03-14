@@ -18,12 +18,16 @@ df_raw <- df_raw |>
 
 # Convert UTM Zone 10N (EPSG:32610) → WGS84 lat/lon
 valid <- df_raw |> filter(X != 0, Y != 0)
-coords <- proj4::ptransform(
-  cbind(valid$X, valid$Y),
-  src.proj = "+proj=utm +zone=10 +datum=WGS84",
-  dst.proj  = "+proj=longlat +datum=WGS84")
+pts <- st_as_sf(valid, coords = c("X", "Y"), crs = 32610) |>
+  st_transform(crs = 4326)
+coords <- st_coordinates(pts)
 valid$LON <- coords[, 1]
 valid$LAT <- coords[, 2]
+
+df <- bind_rows(
+  valid,
+  df_raw |> filter(X == 0 | Y == 0) |> mutate(LON = NA, LAT = NA)
+)
 
 # Re-attach rows that had no coordinates (e.g. Homicide)
 df <- bind_rows(
@@ -240,3 +244,5 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
+
+#print(head(valid[, c("LON", "LAT")]))
