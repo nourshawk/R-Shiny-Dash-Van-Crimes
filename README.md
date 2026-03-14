@@ -27,6 +27,7 @@ cd R-Shiny-Dash-Van-Crimes
 ### 2. Install R dependencies
 
 Open R or RStudio and run:
+
 ```r
 install.packages(c("shiny", "leaflet", "dplyr", "ggplot2", "readr", "sf", "plotly"))
 ```
@@ -37,10 +38,13 @@ install.packages("renv")
 renv::restore()
 ```
 
+Make sure you have opened the clone repository as a project if using Rstudio.
+
 ### 3. Run the app
 ```r
 shiny::runApp("src/app.R")
 ```
+This should automatically redirect you to the wesbite hosting the dashboard app.
 
 Or from the terminal:
 ```bash
@@ -48,6 +52,9 @@ Rscript -e "shiny::runApp('src/app.R')"
 ```
 
 ### 4. Open the link in your browser
+
+If you're running step 3 from the terminal, follow the link displayed to view the dash app:
+
 ```
 http://127.0.0.1:PORT
 ```
