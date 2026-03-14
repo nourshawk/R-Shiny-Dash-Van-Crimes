@@ -7,17 +7,15 @@
   min-height: 100px;
 }
 
-tags$head(tags$style(HTML("
-  body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; margin: 0; font-size: 16px; }
-  .kpi-title { font-size: 1rem; color: #6c757d; margin-bottom: 4px; }
-  .kpi-value { font-size: 2rem; font-weight: 700; color: #1565c0; }
-  .kpi-box {
-    background: white; border-radius: 8px; padding: 24px 12px;
-    box-shadow: 0 1px 4px rgba(0,0,0,.1); text-align: center; 
-    margin-bottom: 12px; min-height: 100px;
-  }
-  .card-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; color: #333; }
-  .sidebar-panel h5 { font-size: 1.1rem; }
-  .sidebar-panel label { font-size: 1rem; }
-  h2.app-title { margin: 0; color: white; font-size: 1.6rem; }
-")))
+body { 
+  font-family: 'Segoe UI', sans-serif; 
+  background: #f8f9fa; 
+  margin: 0; 
+  font-size: 18px !important; 
+  zoom: 1.2;
+}
+.kpi-title { font-size: 1.1rem !important; color: #6c757d; margin-bottom: 4px; }
+.kpi-value { font-size: 2.2rem !important; font-weight: 700; color: #1565c0; }
+.card-title { font-size: 1.2rem !important; font-weight: 600; margin-bottom: 10px; color: #333; }
+.sidebar-panel label { font-size: 1.1rem !important; }
+h2.app-title { margin: 0; color: white; font-size: 1.8rem !important; }
