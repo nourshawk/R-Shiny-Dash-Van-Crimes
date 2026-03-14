@@ -145,7 +145,11 @@ server <- function(input, output, session) {
     d
   })
 
- 
+ observeEvent(input$reset_btn, {
+    updateSelectizeInput(session, "neighbourhood", selected = default_neighbourhoods)
+    updateCheckboxGroupInput(session, "year", selected = 2025)
+  })
+
   output$kpi_total <- renderText({
     format(nrow(filtered_data()), big.mark = ",")
   })
