@@ -43,7 +43,7 @@ business_crimes <- c(
   "Break and Enter Commercial", "Theft from Vehicle",
   "Other Theft", "Mischief", "Theft of Vehicle")
 
-#ui <- fluidPage(),
+ui <- fluidPage(),
 
   #Navigation bar set up
   div(class = "navbar-custom",
