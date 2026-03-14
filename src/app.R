@@ -42,7 +42,7 @@ business_crimes <- c(
 
 ui <- fluidPage(
     tags$head(
-        tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")))
+        tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
 
   #Navigation bar set up
   div(class = "navbar-custom",
@@ -110,6 +110,7 @@ ui <- fluidPage(
       )
     )
   )
+)
 
 
 server <- function(input, output, session) {
