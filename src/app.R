@@ -78,7 +78,7 @@ ui <- fluidPage(
     column(9,
       div(class = "main-panel",
 
-        
+        #kpis
         fluidRow(
           column(4, div(class = "kpi-box",
             div(class = "kpi-title", "Total Crimes"),
@@ -96,7 +96,7 @@ ui <- fluidPage(
           ))
         ),
 
-                # Map
+        # Map
         div(class = "card-panel",
           div(class = "card-title", "Crime Map"),
           leafletOutput("map", height = "420px")
@@ -124,12 +124,13 @@ server <- function(input, output, session) {
       d <- d |> filter(YEAR %in% as.integer(input$year))
     d
   })
-
+    #reset button
  observeEvent(input$reset_btn, {
     updateSelectizeInput(session, "neighbourhood", selected = default_neighbourhoods)
     updateCheckboxGroupInput(session, "year", selected = 2025)
   })
 
+#kpis
   output$kpi_total <- renderText({
     format(nrow(filtered_data()), big.mark = ",")
   })
