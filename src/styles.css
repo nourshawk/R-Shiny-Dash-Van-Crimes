@@ -1,0 +1,8 @@
+.kpi-value { font-size: 2rem; font-weight: 700; color: #1565c0; }
+.kpi-title { font-size: 1rem; color: #6c757d; margin-bottom: 4px; }
+
+.kpi-box {
+  background: white; border-radius: 8px; padding: 24px 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.1); text-align: center; margin-bottom: 12px;
+  min-height: 100px;
+}

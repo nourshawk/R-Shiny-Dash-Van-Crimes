@@ -29,7 +29,7 @@ df <- bind_rows(
   df_raw |> filter(X == 0 | Y == 0) |> mutate(LON = NA, LAT = NA)
 )
 
-# Re-attach rows that had no coordinates (e.g. Homicide)
+# Re-attach homicde rows with no lat/lon so they are still in filtered df and bar chart
 df <- bind_rows(
   valid,
   df_raw |> filter(X == 0 | Y == 0) |> mutate(LON = NA, LAT = NA))
