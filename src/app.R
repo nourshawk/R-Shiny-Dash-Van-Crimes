@@ -6,9 +6,6 @@ library(readr)
 library(sf)
 library(proj4)
 library(plotly)
-
-tags$head(
-  tags$link(rel = "stylesheet", type = "text/css", href = "styles.css"))
  
 df_raw <- read_csv("../data/combined_crime_data_2023_2025.csv", show_col_types = FALSE)
 
@@ -43,7 +40,9 @@ business_crimes <- c(
   "Break and Enter Commercial", "Theft from Vehicle",
   "Other Theft", "Mischief", "Theft of Vehicle")
 
-ui <- fluidPage(),
+ui <- fluidPage(
+    tags$head(
+        tags$link(rel = "stylesheet", type = "text/css", href = "styles.css"))),
 
   #Navigation bar set up
   div(class = "navbar-custom",
