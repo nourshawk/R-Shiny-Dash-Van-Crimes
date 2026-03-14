@@ -7,7 +7,9 @@ library(sf)
 library(proj4)
 library(plotly)
 
-
+tags$head(
+  tags$link(rel = "stylesheet", type = "text/css", href = "styles.css"))
+ 
 df_raw <- read_csv("../data/combined_crime_data_2023_2025.csv", show_col_types = FALSE)
 
 #merging vehicle collison subtypes
@@ -16,7 +18,7 @@ df_raw <- df_raw |>
     grepl("Vehicle Collision", TYPE) ~ "Vehicle Collision or Pedestrian Struck",
     TRUE ~ TYPE))
 
-# Convert UTM Zone 10N (EPSG:32610) → WGS84 lat/lon
+# Converting lon/lat 
 valid <- df_raw |> filter(X != 0, Y != 0)
 pts <- st_as_sf(valid, coords = c("X", "Y"), crs = 32610) |>
   st_transform(crs = 4326)
@@ -26,8 +28,7 @@ valid$LAT <- coords[, 2]
 
 df <- bind_rows(
   valid,
-  df_raw |> filter(X == 0 | Y == 0) |> mutate(LON = NA, LAT = NA)
-)
+  df_raw |> filter(X == 0 | Y == 0) |> mutate(LON = NA, LAT = NA))
 
 # Re-attach homicde rows with no lat/lon so they are still in filtered df and bar chart
 df <- bind_rows(
@@ -42,32 +43,7 @@ business_crimes <- c(
   "Break and Enter Commercial", "Theft from Vehicle",
   "Other Theft", "Mischief", "Theft of Vehicle")
 
-ui <- fluidPage(
-  tags$head(tags$style(HTML("
-    body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; margin: 0; }
-    .navbar-custom {
-      background: #1565c0; color: white; padding: 14px 24px;
-      font-size: 1.4rem; font-weight: 700; margin-bottom: 0;
-    }
-    .sidebar-panel {
-      background: white; border-radius: 8px; padding: 16px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.1); height: 100%;
-    }
-    .main-panel { padding: 0 8px; }
-    .kpi-box {
-      background: white; border-radius: 8px; padding: 16px 12px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.1); text-align: center; margin-bottom: 12px;
-    }
-    .kpi-title { font-size: .8rem; color: #6c757d; margin-bottom: 4px; }
-    .kpi-value { font-size: 1.6rem; font-weight: 700; color: #1565c0; }
-    .card-panel {
-      background: white; border-radius: 8px; padding: 16px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.1); margin-bottom: 16px;
-    }
-    .card-title { font-size: 1rem; font-weight: 600; margin-bottom: 10px; color: #333; }
-    .btn-success { width: 100%; margin-top: 12px; }
-    h2.app-title { margin: 0; color: white; font-size: 1.4rem; }
-  "))),
+#ui <- fluidPage(),
 
   #Navigation bar set up
   div(class = "navbar-custom",
