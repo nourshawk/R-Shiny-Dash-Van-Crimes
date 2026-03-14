@@ -11,8 +11,8 @@ VanCrimeWatch is an interactive dashboard that visualizes crime data across Vanc
 The dashboard includes:
 
 - **Interactive Map** : Bubble map where size reflects crime density per neighbourhood, users can select their desired neighborhoods to explore in the dropdown menu in the sidebar
-- **Top 5 Crime Types** : Bar chart showing the most common crimes for the selected neighborhoods, with interactive tooltip for exact counts.
-- **KPI Cards** : Total crimes, least crime neighbourhood, and most common crime type
+- **Top 5 Crime Types** : Bar chart showing the top 5 most common crimes for the selected neighborhoods, with interactive tooltip for exact counts.
+- **KPI Cards** : Total crimes, least crime neighbourhood, and most common crime type based on year and neighborhood selection
 - **Neighbourhood & Year Filters** : Filter by specific Vancouver neighbourhoods and years (2023–2025)
 - **Reset Filters** : Button that helps users resort back to default selections (Downtown Neighborhoods, where crime is most concentrated and year 2025, the most recent year)
 
