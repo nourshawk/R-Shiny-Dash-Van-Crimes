@@ -40,7 +40,7 @@ business_crimes <- c(
   "Break and Enter Commercial", "Theft from Vehicle",
   "Other Theft", "Mischief", "Theft of Vehicle")
 
-ui <- fluidPage((
+ui <- fluidPage(
     tags$head(
         tags$link(rel = "stylesheet", type = "text/css", href = "styles.css"))),
 
@@ -110,7 +110,6 @@ ui <- fluidPage((
       )
     )
   )
-)
 
 
 server <- function(input, output, session) {
