@@ -71,7 +71,7 @@ ui <- fluidPage(
 
   #Navigation bar set up
   div(class = "navbar-custom",
-    h2(class = "app-title", "🔍 VanCrimeWatch — R Edition")),
+    h2(class = "app-title", "VanCrimeWatch with R")),
 
   br(),
 
