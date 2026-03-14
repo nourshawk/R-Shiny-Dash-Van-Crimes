@@ -7,7 +7,7 @@ library(sf)
 library(proj4)
 
 
-df_raw <- read_csv("data/combined_crime_data_2023_2025.csv", show_col_types = FALSE)
+df_raw <- read_csv("../data/combined_crime_data_2023_2025.csv", show_col_types = FALSE)
 
 #merging vehicle collison subtypes
 df_raw <- df_raw |>
