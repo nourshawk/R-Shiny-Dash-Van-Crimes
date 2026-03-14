@@ -5,6 +5,7 @@ library(ggplot2)
 library(readr)
 library(sf)
 library(proj4)
+library(plotly)
 
 
 df_raw <- read_csv("../data/combined_crime_data_2023_2025.csv", show_col_types = FALSE)
