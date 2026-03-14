@@ -238,7 +238,7 @@ server <- function(input, output, session) {
           yaxis  = list(title = ""),
           plot_bgcolor  = "white",
           paper_bgcolor = "white"
-        ),
+        ) |>
         config(displayModeBar = FALSE)
     }
   })
